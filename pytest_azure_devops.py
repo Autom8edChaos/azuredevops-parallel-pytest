@@ -35,19 +35,19 @@ def grouper(items, total_groups: int):
     if total_groups <= 0:
         raise ValueError(f"total_groups should be bigger than zero but got {total_groups}")
 
-    if n >= len(lst):
-        return [[item] for item in lst]
+    if total_groups >= len(items):
+        return [[item] for item in items]
 
-    chunk_size = len(lst) // n
-    remainder = len(lst) % n
+    chunk_size = len(items) // n
+    remainder = len(items) % n
 
     groups = []
     start = 0
 
-    for i in range(n):
+    for i in range(total_groups):
         # First 'remainder' groups get an extra item
         current_size = chunk_size + (1 if i < remainder else 0)
-        groups.append(lst[start:start + current_size])
+        groups.append(items[start:start + current_size])
         start += current_size
 
     return groups
