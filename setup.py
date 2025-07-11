@@ -12,14 +12,14 @@ def read(fname):
 
 
 setup(
-    name='pytest-azure-devops',
-    version='0.2.0',
-    author='Francesc Elies',
+    name='azuredevops-parallel-pytest',
+    version='0.1.0',
+    author='Bas M. Dam',
     license='Mozilla Public License 2.0',
-    url='https://github.com/FrancescElies/pytest-azure-devops',
+    url='https://github.com/Autom8edChaos/azuredevops-parallel-pytest',
     description=('Simplifies using azure devops parallel strategy '
                  '(https://docs.microsoft.com/en-us/azure/devops/pipelines/test/parallel-testing-any-test-runner) '
-                 'with pytest.'),
+                 'with pytest. Forked and enhanced from (https://github.com/FrancescElies/pytest-azure-devops)'),
     long_description=read('README.rst'),
     long_description_content_type="text/x-rst",
     py_modules=['pytest_azure_devops'],
