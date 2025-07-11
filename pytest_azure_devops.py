@@ -35,26 +35,22 @@ def grouper(items, total_groups: int):
     if total_groups <= 0:
         raise ValueError(f"total_groups should be bigger than zero but got {total_groups}")
 
-    if total_groups < (len(items) / 2):
-        chunk_size = ceil(len(items) / total_groups)
-    else:
-        chunk_size = 1
+    if n >= len(lst):
+        return [[item] for item in lst]
 
-    groups = [
-        [y for y in x if y] for x in zip_longest(*([iter(items)] * chunk_size), fillvalue=None)
-    ]
+    chunk_size = len(lst) // n
+    remainder = len(lst) % n
 
-    num_extra_groups = len(groups) - total_groups
+    groups = []
+    start = 0
 
-    if not num_extra_groups:
-        return groups
-    elif num_extra_groups > 0:
-        # rebalance extra groups
-        redist_groups = [groups[idx * 2] + groups[idx * 2 + 1] for idx in range(num_extra_groups)]
-        redist_groups += groups[num_extra_groups * 2:]
-        return redist_groups
-    else:
-        raise RuntimeError(f"Expected {total_groups} groups but got {groups}")
+    for i in range(n):
+        # First 'remainder' groups get an extra item
+        current_size = chunk_size + (1 if i < remainder else 0)
+        groups.append(lst[start:start + current_size])
+        start += current_size
+
+    return groups
 
 
 @pytest.hookimpl(trylast=True)
